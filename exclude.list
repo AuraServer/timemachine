@@ -5,7 +5,7 @@
 /run/*
 /mnt/*
 /media/*
-/var/log/journal/*
+/var/log/journal
 /lost+found
 /bag_buffer
 /bag_saved
