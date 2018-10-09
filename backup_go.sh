@@ -1,5 +1,8 @@
 #!/bin/bash -xe
 
+# work in crontab
+PATH=$PATH:/usr/bin:/usr/sbin:/sbin:/bin
+
 if [[ ! $UID == 0 ]];then
   echo "please run as root"
   exit 1
