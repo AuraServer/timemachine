@@ -5,10 +5,9 @@ if [[ ! $UID == 0 ]];then
   exit 1
 fi
 
-backup_dir=$(realpath ./data)
-
 id=$(date +"%Y%m%d-%H%M%S")
-proj_dir=$(dirname $0)
+proj_dir=$(realpath $(dirname $0))
+backup_dir=${proj_dir}/data
 
 target_vg=ubuntu-vg
 target_lv=root
@@ -50,8 +49,8 @@ if [[ -z $(mount | grep ${snap_mount_dir}) ]];then
 fi
 
 
-echo "start timemachine at $(date)"
+echo "start timemachine at $(date) -> ${backup_dir}"
 timemachine --verbose ${snap_mount_dir}/. ${backup_dir} -- -aAXHS --exclude-from=${proj_dir}/exclude.list
 #timemachine --verbose ${snap_mount_dir}/. ${backup_dir} -- -aAXHS --progress --exclude-from=${proj_dir}/exclude.list
-echo "end timemachine at $(date)"
+echo "end timemachine at $(date) -> ${backup_dir}"
 
